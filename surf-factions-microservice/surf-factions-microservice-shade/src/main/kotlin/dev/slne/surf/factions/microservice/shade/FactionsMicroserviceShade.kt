@@ -16,13 +16,13 @@ class FactionMicroserviceShade : Microservice() {
     val databaseApi = DatabaseApi.create(dataPath)
 
     override suspend fun onBootstrap(args: List<String>) {
-        FactionMicroserviceManager.onBootstrap(args)
+        FactionsMicroserviceManager.onBootstrap(args)
 
         rabbitApi.freezeAndConnect()
     }
 
     override suspend fun onDisable() {
-        FactionMicroserviceManager.onDisable()
+        FactionsMicroserviceManager.onDisable()
 
         rabbitApi.disconnect()
         databaseApi.shutdown()

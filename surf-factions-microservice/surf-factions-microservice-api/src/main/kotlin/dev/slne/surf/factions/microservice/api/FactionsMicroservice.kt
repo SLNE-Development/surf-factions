@@ -1,12 +1,13 @@
-package dev.slne.surf.factions.client.common.api
+package dev.slne.surf.factions.microservice.api
 
 import dev.slne.surf.factions.shared.module.FactionsModuleType
 
-abstract class FactionsPlugin(
+abstract class FactionsMicroservice(
     val type: FactionsModuleType,
     val dependencies: List<FactionsModuleType> = emptyList()
 ) {
-    abstract suspend fun onLoad()
-    abstract suspend fun onEnable()
+    val name get() = type.name
+
+    abstract suspend fun onBootstrap(args: List<String>)
     abstract suspend fun onDisable()
 }

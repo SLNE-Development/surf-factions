@@ -7,12 +7,12 @@ import dev.slne.surf.factions.fractions.microservice.db.tables.FractionsTable
 import dev.slne.surf.factions.fractions.microservice.db.tables.member.FractionMemberRoleHistoriesTable
 import dev.slne.surf.factions.fractions.microservice.db.tables.member.FractionMembersTable
 import dev.slne.surf.factions.fractions.microservice.db.tables.member.invite.FractionMemberInvitesTable
-import dev.slne.surf.factions.microservice.api.FactionMicroservice
-import dev.slne.surf.factions.shared.module.FactionModuleType
+import dev.slne.surf.factions.microservice.api.FactionsMicroservice
+import dev.slne.surf.factions.shared.module.FactionsModuleType
 
-object FractionsMicroservice : FactionMicroservice(
-    type = FactionModuleType.FRACTIONS,
-    dependencies = listOf(FactionModuleType.USERS)
+object FractionsMicroservice : FactionsMicroservice(
+    type = FactionsModuleType.FRACTIONS,
+    dependencies = listOf(FactionsModuleType.USERS)
 ) {
     override suspend fun onBootstrap(args: List<String>) {
         SchemaUtils.create(

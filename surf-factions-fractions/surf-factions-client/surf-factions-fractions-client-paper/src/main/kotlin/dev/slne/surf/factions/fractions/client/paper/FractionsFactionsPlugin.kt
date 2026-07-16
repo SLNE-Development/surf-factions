@@ -1,10 +1,10 @@
 package dev.slne.surf.factions.fractions.client.paper
 
 import dev.slne.surf.factions.client.common.api.FactionsPlugin
-import dev.slne.surf.factions.shared.module.FactionModuleType
+import dev.slne.surf.factions.shared.module.FactionsModuleType
 
 object FractionsFactionsPlugin : FactionsPlugin(
-    type = FactionModuleType.FRACTIONS,
+    type = FactionsModuleType.FRACTIONS,
 ) {
     override suspend fun onLoad() {
 

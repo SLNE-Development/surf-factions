@@ -1,6 +1,6 @@
 package dev.slne.surf.factions.shared.module
 
-enum class FactionModuleType {
+enum class FactionsModuleType {
     USERS,
     FRACTIONS
 }
