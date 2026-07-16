@@ -49,3 +49,11 @@ include("surf-factions-modules:surf-factions-user:surf-factions-user-core:surf-f
 include("surf-factions-modules:surf-factions-user:surf-factions-user-microservice")
 include("surf-factions-modules:surf-factions-user:surf-factions-user-client:surf-factions-user-client-paper")
 include("surf-factions-modules:surf-factions-user:surf-factions-user-client:surf-factions-user-client-velocity")
+
+// Claims
+include("surf-factions-modules:surf-factions-claims:surf-factions-claims-api")
+include("surf-factions-modules:surf-factions-claims:surf-factions-claims-core:surf-factions-claims-core-common")
+include("surf-factions-modules:surf-factions-claims:surf-factions-claims-core:surf-factions-claims-core-client")
+include("surf-factions-modules:surf-factions-claims:surf-factions-claims-microservice")
+include("surf-factions-modules:surf-factions-claims:surf-factions-claims-client:surf-factions-claims-client-paper")
+include("surf-factions-modules:surf-factions-claims:surf-factions-claims-client:surf-factions-claims-client-velocity")
