@@ -2,17 +2,22 @@ package dev.slne.surf.factions.microservice.shade
 
 import dev.slne.surf.factions.fractions.microservice.FractionsMicroservice
 import dev.slne.surf.factions.microservice.api.FactionsMicroservice
+import dev.slne.surf.factions.shared.module.FactionsModuleDependencyTree
 
 object FactionsMicroserviceManager {
-    lateinit var microservices: List<FactionsMicroservice>
+    private val dependencyTree = FactionsModuleDependencyTree<FactionsMicroservice>(buildList {
+        add(FractionsMicroservice)
+    })
 
     suspend fun onBootstrap(args: List<String>) {
-        microservices = buildList {
-            add(FractionsMicroservice)
+        for (microservice in dependencyTree.sortedAscending()) {
+            microservice.onBootstrap(args)
         }
     }
 
     suspend fun onDisable() {
-
+        for (microservice in dependencyTree.sortedDescending()) {
+            microservice.onDisable()
+        }
     }
 }
