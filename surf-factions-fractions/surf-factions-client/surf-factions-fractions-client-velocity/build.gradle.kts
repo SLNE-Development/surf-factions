@@ -3,5 +3,6 @@ plugins {
 }
 
 dependencies {
+    api(projects.surfFactionsClient.surfFactionsClientVelocity.surfFactionsClientVelocityApi)
     api(projects.surfFactionsFractions.surfFactionsFractionsCore.surfFactionsFractionsCoreClient)
 }
