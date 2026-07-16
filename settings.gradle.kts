@@ -39,8 +39,8 @@ include("surf-factions-modules:surf-factions-fractions:surf-factions-fractions-a
 include("surf-factions-modules:surf-factions-fractions:surf-factions-fractions-core:surf-factions-fractions-core-common")
 include("surf-factions-modules:surf-factions-fractions:surf-factions-fractions-core:surf-factions-fractions-core-client")
 include("surf-factions-modules:surf-factions-fractions:surf-factions-fractions-microservice")
-include("surf-factions-modules:surf-factions-fractions:surf-factions-client:surf-factions-fractions-client-velocity")
-include("surf-factions-modules:surf-factions-fractions:surf-factions-client:surf-factions-fractions-client-paper")
+include("surf-factions-modules:surf-factions-fractions:surf-factions-fractions-client:surf-factions-fractions-client-velocity")
+include("surf-factions-modules:surf-factions-fractions:surf-factions-fractions-client:surf-factions-fractions-client-paper")
 
 // User
 include("surf-factions-modules:surf-factions-user:surf-factions-user-api")

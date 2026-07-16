@@ -12,5 +12,5 @@ dependencies {
 
     // Modules
     api(projects.surfFactionsModules.surfFactionsUser.surfFactionsUserClient.surfFactionsUserClientPaper)
-    api(projects.surfFactionsModules.surfFactionsFractions.surfFactionsClient.surfFactionsFractionsClientPaper)
+    api(projects.surfFactionsModules.surfFactionsFractions.surfFactionsFractionsClient.surfFactionsFractionsClientPaper)
 }
