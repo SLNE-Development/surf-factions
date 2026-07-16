@@ -4,5 +4,5 @@ plugins {
 
 dependencies {
     api(projects.surfFactionsClient.surfFactionsClientPaper.surfFactionsClientPaperApi)
-    api(projects.surfFactionsFractions.surfFactionsFractionsCore.surfFactionsFractionsCoreClient)
+    api(projects.surfFactionsModules.surfFactionsFractions.surfFactionsFractionsCore.surfFactionsFractionsCoreClient)
 }

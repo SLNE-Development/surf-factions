@@ -4,6 +4,6 @@ plugins {
 }
 
 dependencies {
-    api(projects.surfFactionsFractions.surfFactionsFractionsCore.surfFactionsFractionsCoreCommon)
+    api(projects.surfFactionsModules.surfFactionsFractions.surfFactionsFractionsCore.surfFactionsFractionsCoreCommon)
     api(projects.surfFactionsMicroservice.surfFactionsMicroserviceApi)
 }

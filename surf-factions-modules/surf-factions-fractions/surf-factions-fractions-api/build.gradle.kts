@@ -4,5 +4,5 @@ plugins {
 
 dependencies {
     api(projects.surfFactionsShared)
-    api(projects.surfFactionsUser.surfFactionsUserApi)
+    api(projects.surfFactionsModules.surfFactionsUser.surfFactionsUserApi)
 }
