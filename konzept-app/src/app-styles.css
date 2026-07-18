@@ -411,3 +411,61 @@ h2.sec.tone-peace .k-marker{background:var(--peace)}
 @media(max-width:900px){
   .fg-label{font-size:13px}
 }
+
+/* ---------- LOGIN-GATE ---------- */
+.login{
+  position:relative;z-index:1;
+  min-height:100dvh;display:grid;place-items:center;padding:24px;
+}
+.login__card{
+  width:100%;max-width:360px;
+  display:flex;flex-direction:column;gap:14px;
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:32px 28px 28px;
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.6);
+}
+.login__mark{
+  font-family:var(--font-display);font-weight:700;letter-spacing:.06em;
+  font-size:30px;line-height:1;color:var(--ink);
+}
+.login__mark span{color:var(--war)}
+.login__sub{
+  margin-top:-6px;color:var(--ink-faint);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;
+}
+.login__label{
+  margin-top:8px;color:var(--ink-dim);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+}
+.login__input{
+  width:100%;padding:11px 13px;
+  background:var(--bg-2);color:var(--ink);
+  border:1px solid var(--line-strong);border-radius:var(--radius);
+  font-family:var(--font-mono);font-size:14px;
+  outline:none;transition:border-color .15s;
+}
+.login__input:focus{border-color:var(--peace)}
+.login__input:disabled{opacity:.6}
+.login__error{
+  color:var(--war);font-size:13px;
+  border-left:2px solid var(--war);padding-left:10px;
+}
+.login__btn{
+  margin-top:4px;padding:11px 16px;cursor:pointer;
+  background:var(--war);color:#fff;
+  border:none;border-radius:var(--radius);
+  font-family:var(--font-display);font-weight:600;letter-spacing:.04em;font-size:14px;
+  transition:filter .15s,opacity .15s;
+}
+.login__btn:hover:not(:disabled){filter:brightness(1.08)}
+.login__btn:disabled{opacity:.5;cursor:not-allowed}
+
+.brand__logout{
+  margin-top:12px;cursor:pointer;
+  background:transparent;color:var(--ink-faint);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:5px 10px;
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;
+  transition:color .15s,border-color .15s;
+}
+.brand__logout:hover:not(:disabled){color:var(--war);border-color:var(--war-deep)}

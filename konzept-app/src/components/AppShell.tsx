@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState, type ReactNode } from 'react';
 import { NAVGROUPS } from '@/data';
 import { systemById } from '@/lib/helpers';
@@ -9,6 +9,22 @@ import { GlobalSearch } from './GlobalSearch';
 
 function normalize(path: string): string {
   return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
+}
+
+function LogoutButton() {
+  const router = useRouter();
+  const [busy, setBusy] = useState(false);
+  async function logout() {
+    setBusy(true);
+    await fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
+    router.replace('/login');
+    router.refresh();
+  }
+  return (
+    <button className="brand__logout" onClick={logout} disabled={busy}>
+      {busy ? 'Abmelden …' : 'Abmelden'}
+    </button>
+  );
 }
 
 function NavItem({ href, num, label, active }: { href: string; num?: string; label: string; active: boolean }) {
@@ -61,6 +77,11 @@ export function AppShell({ children }: { children: ReactNode }) {
     setOpen(false);
   }, [path]);
 
+  // Die Login-Seite läuft ohne App-Rahmen (kein Sidebar/Suche).
+  if (path === '/login') {
+    return <>{children}</>;
+  }
+
   return (
     <div className="app">
       <button className={`scrim${open ? ' is-on' : ''}`} onClick={() => setOpen(false)} aria-label="Menü schließen" />
@@ -72,6 +93,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <div className="brand__sub">CastCrafter Factions · Konzept</div>
           </Link>
           <div className="brand__tag">Diskussionsgrundlage v0.4</div>
+          <LogoutButton />
         </div>
         <div className="sidebar__search">
           <GlobalSearch />
