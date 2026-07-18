@@ -60,6 +60,7 @@ function SidebarNav({ path }: { path: string }) {
       <div className="nav__group">
         <div className="nav__label">Katalog &amp; Plan</div>
         <NavItem href="/ideen" num="50" label="Feature-Ideen" active={path.startsWith('/idee')} />
+        <NavItem href="/roadmap" num="⌖" label="Roadmap" active={is('/roadmap')} />
         <NavItem href="/umsetzung" num="▸" label="Umsetzung" active={is('/umsetzung')} />
         <NavItem href="/fragen" num="?" label="Offene Fragen" active={is('/fragen')} />
       </div>

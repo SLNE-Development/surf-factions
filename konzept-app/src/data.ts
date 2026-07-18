@@ -31,6 +31,27 @@ export interface RoadmapPhase { t: string; d: string; }
 export interface Roadmap {
   lede: string; decisions: RoadmapDecision[]; scope: Block[]; phases: RoadmapPhase[]; need: Block[];
 }
+
+/** Status-Band eines Meilensteins auf der Roadmap-Timeline. */
+export type MilestoneStatus = 'launch' | 'geplant' | 'ausbau';
+/** Ein Knoten auf der vertikalen Roadmap-Timeline. */
+export interface Milestone {
+  phase: string;              // Kurzmarke links am Zeitstrahl, z. B. "MVP · Season 1"
+  title: string;             // Überschrift des Meilensteins
+  status: MilestoneStatus;   // Status-Band (Launch / Geplant / Ausbau)
+  desc: string;              // ein Satz Einordnung
+  chips?: string[];          // Feature-Chips (Track „Allgemein")
+  modules?: string[];        // verantwortliche Module (Track „Dev")
+  note?: string;             // optionaler Guardrail/Hinweis (Track „Dev")
+}
+/** Ein Roadmap-Track = ein Tab (Allgemein oder Dev) mit eigener Meilenstein-Liste. */
+export interface RoadmapTrack {
+  id: 'allgemein' | 'dev';
+  label: string;
+  lede: string;
+  milestones: Milestone[];
+}
+
 export interface NavGroup { label: string; ids: string[]; }
 
 export const TAGS: Record<Tag, string> = {
@@ -3318,6 +3339,102 @@ export const ROADMAP: Roadmap = {
     }
   ]
 };
+
+export const ROADMAP_TRACKS: RoadmapTrack[] = [
+  {
+    id: 'allgemein',
+    label: 'Allgemein',
+    lede: 'Was auf dem Server passiert — von Season-1-Launch bis in die zweite Saison. Ein bewusst kleiner Kern zum Start, danach sichtbares Wachstum über Kapitel-Updates.',
+    milestones: [
+      {
+        phase: 'MVP · Season 1',
+        title: 'Der spielbare Kern',
+        status: 'launch',
+        desc: 'Territorium, Belagerung und Wirtschaft stehen — die Season läuft mit 60 % Umfang an und wächst sichtbar weiter.',
+        chips: ['Core', 'Claims / Kernblock', 'Belagerung mit Fenstern', 'Economy', 'Kriegszustände', 'Diplomatie-Basis', 'Chronik', 'Discord-Bot', 'Dynmap'],
+      },
+      {
+        phase: 'Kapitel 2',
+        title: 'Nachschub wird Spielinhalt',
+        status: 'geplant',
+        desc: 'Ressourcen müssen physisch bewegt werden. Wer die Linie kappt, gewinnt die Front ohne Kampf — die Rolle für Nicht-PvP-Spieler.',
+        chips: ['Logistik', 'Fracht', 'Konvois', 'Karawanen'],
+      },
+      {
+        phase: 'Kapitel 3',
+        title: 'Bedrohungen der Welt',
+        status: 'geplant',
+        desc: 'Kooperativer Endgame-Content und ein netzwerkweites Ziel, das mehrere Fraktionen zugleich fordert.',
+        chips: ['Weltbosse', 'Zitadelle', 'Dungeons T1–2'],
+      },
+      {
+        phase: 'Kapitel 4',
+        title: 'Meta & Endzeit',
+        status: 'geplant',
+        desc: 'Langzeitmotivation und ein dramatischer Season-Ausklang mit schrumpfender Karte und Reliquienschrein.',
+        chips: ['BattlePass', 'Saison-Berufe', 'Endzeit-Mechanik'],
+      },
+      {
+        phase: 'Season 2',
+        title: 'Die zweite Saison',
+        status: 'ausbau',
+        desc: 'Alles Gelernte ab Tag 1 — plus neue Systeme und die plünderbaren Ruinen der ersten Season.',
+        chips: ['Berufe ab Start', 'Dungeons vollständig', 'Spezialisierungen', 'Erweiterte Diplomatie', 'Ruinen aus S1'],
+      },
+    ],
+  },
+  {
+    id: 'dev',
+    label: 'Dev',
+    lede: 'Die technische Bau-Reihenfolge. Der Chronik-Event-Bus steht vor allem anderen; drei Grundsatzentscheidungen fallen vor der ersten Zeile Code. Module in der Reihenfolge, in der sie aufeinander aufbauen.',
+    milestones: [
+      {
+        phase: 'Phase 0 · Fundament',
+        title: 'Entscheidungen & Event-Bus',
+        status: 'launch',
+        desc: 'Drei Grundsatzentscheidungen fallen zuerst — Verteidigungsfenster (ja/nein), Season-Rhythmus, Folia (ja/nein). Dann der zentrale, typisierte Chronik-Bus als Herzstück der Architektur.',
+        modules: ['factions-chronicle', 'factions-bridge'],
+        note: 'Den Bus von der ersten Zeile an einbauen, nicht nachrüsten: Bei 14 Modulen ist ein nachträglicher Umbau teurer als das ganze Feature-Set. Stack steht fest — Paper + Velocity, Kotlin + Surf-API, MariaDB.',
+      },
+      {
+        phase: 'Phase 1 · MVP',
+        title: 'Kern-Module',
+        status: 'launch',
+        desc: 'Der launchfähige Kern. Alle Module feuern von Anfang an in den Chronik-Bus; Web und Discord sind reine Konsumenten.',
+        modules: ['factions-core', 'factions-claims', 'factions-siege', 'factions-economy', 'factions-diplomacy', 'factions-protection', 'factions-discord'],
+        note: 'Persistenz durchgängig relational (MariaDB) für Fraktionen, Claims, Verträge, Kontostände. Nicht selbst bauen: Anti-Cheat, Rollback (CoreProtect-Äquivalent), Dynmap.',
+      },
+      {
+        phase: 'Phase 2',
+        title: 'Logistik-Layer',
+        status: 'geplant',
+        desc: 'Fracht als PDC-getaggte Items, physische Transportrouten und unterbrechbare Nachschublinien.',
+        modules: ['factions-logistics'],
+      },
+      {
+        phase: 'Phase 3',
+        title: 'Welt-Content',
+        status: 'geplant',
+        desc: 'Event-Scheduler mit „nur ein Event gleichzeitig"-Lock, Boss-Phasen mit schadensbasiertem Loot und instanzierte Dungeons.',
+        modules: ['factions-events', 'factions-siege', 'factions-dungeons'],
+      },
+      {
+        phase: 'Phase 4',
+        title: 'Progression & Season-Lifecycle',
+        status: 'geplant',
+        desc: 'BattlePass und Berufe speisen sich aus Chronik-Ereignissen, nie aus reiner Zeit. Season-Lifecycle mit hartem/weichem Reset — die Chronik überlebt jeden Reset.',
+        modules: ['factions-progression', 'factions-season'],
+      },
+      {
+        phase: 'Season 2 · Ausbau',
+        title: 'Erweiterung',
+        status: 'ausbau',
+        desc: 'Die verbleibenden Ideen aus dem Katalog: Spezialisierungen, erweiterte Diplomatie, season-übergreifende Systeme.',
+        modules: ['übergreifend'],
+      },
+    ],
+  },
+];
 
 export const NAVGROUPS: NavGroup[] = [
   {

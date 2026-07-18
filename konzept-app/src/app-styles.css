@@ -414,6 +414,60 @@ h2.sec.tone-peace .k-marker{background:var(--peace)}
   .search-panel{width:92vw;max-height:82vh}
 }
 
+/* ---------- ROADMAP (Tabs + vertikale Timeline) ---------- */
+.rtabs{
+  display:inline-flex;gap:4px;margin:22px 0 4px;padding:4px;
+  border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);
+}
+.rtab{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-dim);background:none;border:none;border-radius:3px;padding:8px 20px;cursor:pointer;
+  transition:background .12s,color .12s,box-shadow .12s;
+}
+.rtab:hover{color:var(--ink)}
+.rtab.is-active{background:var(--panel-3);color:#fff;box-shadow:inset 0 -2px 0 var(--war)}
+
+.tl{margin-top:30px;max-width:calc(var(--maxread) + 60px)}
+.tl__node{display:grid;grid-template-columns:26px 1fr;gap:20px;padding-bottom:34px}
+.tl__node:last-child{padding-bottom:0}
+.tl__rail{position:relative;display:flex;justify-content:center}
+.tl__rail::before{
+  content:"";position:absolute;left:50%;transform:translateX(-50%);top:7px;bottom:-34px;width:2px;
+  background:linear-gradient(180deg,var(--line-strong),var(--line));
+}
+.tl__node:last-child .tl__rail::before{display:none}
+.tl__dot{
+  position:relative;z-index:1;display:block;width:13px;height:13px;border-radius:50%;margin-top:5px;
+  background:var(--bg-2);border:2px solid var(--war);box-shadow:0 0 10px rgba(224,86,63,.35);
+}
+.tl__node.status-geplant .tl__dot{border-color:var(--peace);box-shadow:0 0 10px rgba(79,174,196,.35)}
+.tl__node.status-ausbau .tl__dot{border-color:var(--ausbau);box-shadow:0 0 10px rgba(154,134,196,.35)}
+
+.tl__head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:2px}
+.tl__phase{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.tl__status{
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:2px 8px;border-radius:3px;border:1px solid var(--line-strong);color:var(--ink-dim);
+}
+.tl__status.status-launch{color:var(--war);border-color:var(--war-deep);background:rgba(224,86,63,.08)}
+.tl__status.status-geplant{color:var(--peace);border-color:var(--peace-deep);background:rgba(79,174,196,.08)}
+.tl__status.status-ausbau{color:var(--ausbau);border-color:#4a3f66;background:rgba(154,134,196,.08)}
+.tl__title{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:.02em;color:#fff;margin:4px 0 8px;line-height:1.15}
+.tl__desc{color:var(--ink-dim);font-size:15px;max-width:var(--maxread);margin:0 0 14px}
+.tl__chips{display:flex;flex-wrap:wrap;gap:8px}
+.tl__chip{
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;padding:4px 10px;border-radius:3px;
+  border:1px solid var(--line-strong);background:var(--panel);color:var(--ink-dim);
+}
+.tl__mods{display:flex;flex-wrap:wrap;gap:7px}
+.tl__note{margin-top:14px;margin-bottom:0}
+
+@media(max-width:900px){
+  .rtabs{display:flex;width:100%}
+  .rtab{flex:1;text-align:center;padding:9px 10px}
+  .tl__title{font-size:19px}
+}
+
 /* ---------- LOGIN-GATE ---------- */
 .login{
   position:relative;z-index:1;
