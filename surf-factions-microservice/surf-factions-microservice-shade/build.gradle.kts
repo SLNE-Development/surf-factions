@@ -7,4 +7,5 @@ dependencies {
 
     api(projects.surfFactionsModules.surfFactionsUser.surfFactionsUserMicroservice)
     api(projects.surfFactionsModules.surfFactionsFractions.surfFactionsFractionsMicroservice)
+    api(projects.surfFactionsModules.surfFactionsClaims.surfFactionsClaimsMicroservice)
 }
